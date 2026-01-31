@@ -27,6 +27,9 @@ def spam_ham(data: Values):
     print(data)
     text = data['text']
     text = text.lower()
+    text = text.replace("\n", " ")
+    text = text.replace("\r", " ")
+    text = " ".join(text.split())
     word = word_tokenize(text)  
     for i in range(0,len(word)):
         if word[i] not in stopwords.words("english"):
@@ -34,6 +37,7 @@ def spam_ham(data: Values):
             word[i] = new_word
         else:
             word[i] = " "
+    text = " ".join(word)
     text = vector.transform([text]).toarray()
 
     prediction = model.predict(text)
