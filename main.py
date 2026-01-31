@@ -1,15 +1,9 @@
 import uvicorn
 from fastapi import FastAPI, Body
-
-
 import numpy as np
 import pandas as pd
 import pickle
 import nltk
-nltk.download("punkt")
-nltk.download("stopwords")
-nltk.download("wordnet")
-
 from nltk.tokenize import word_tokenize
 from fastapi import HTTPException
 from nltk.corpus import stopwords
