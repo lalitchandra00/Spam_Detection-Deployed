@@ -1,6 +1,5 @@
 import uvicorn
-from fastapi import FastAPI
-from values import Values
+from fastapi import FastAPI, Body
 import numpy as np
 import pandas as pd
 import pickle
@@ -22,10 +21,15 @@ pickle_in_3 = open("lemmatizer.pkl", "rb")
 lemmatizer = pickle.load(pickle_in_3)
 
 @app.post('/predict')
-def spam_ham(data: Values): 
-    data = data.model_dump()  
-    print(data)
-    text = data['Enter_mail_in_one_para']
+def spam_ham(text: str = Body(...,
+        media_type="text/plain",
+        title="Enter Text",
+        description="Paste your email or message here"
+    )
+):
+    # data = data.model_dump()  
+    # print(data)
+    # text = data['Enter_mail_in_one_para']
     text = text.lower()
     word = word_tokenize(text)  
     for i in range(0,len(word)):
