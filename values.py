@@ -1,3 +1,3 @@
 from pydantic import BaseModel
 class Values(BaseModel):
-    text: str
+    Enter_mail_in_one_para: str
